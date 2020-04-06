@@ -1,0 +1,45 @@
+#social-test {
+  font-size: 1.3rem;
+  padding-top: 1%;
+}
+
+.social {
+  padding-left: 0;
+}
+
+li {
+  display: inline-block;
+}
+
+li a {
+  color: rgba(256, 256, 256, 0.6);
+  list-style-type: none;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 35px;
+  padding: 1%;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: ease .3s;
+}
+
+li:first-child a {
+  margin-left: 0;
+}
+
+li a:hover {
+   color: rgba(256, 256, 256, 1);
+ }
+
+.social:hover > li {
+  opacity: 0.5;
+}
+
+.social:hover > li:hover {
+  opacity: 1;
+}
+
+.credits, .credits a {
+  color: rgba(256, 256, 256, 0.6);
+}

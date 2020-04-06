@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-lg-3 col-sm-12" *ngIf="!mobile">
+      <app-account-details-card></app-account-details-card>
+    </div>
+    <div class="col-lg-9 col-sm-12">
+      <div *ngIf="page">
+        <app-grid-options [currency]="params.currency"
+                          [total]="page.total"
+                          [sort]="params.sort"
+                          (optionsChanged)="onOptionsChange($event)">
+        </app-grid-options>
+
+        <div *ngIf="page.content.length && !loading">
+          <div class="listings">
+            <app-apartment-listings-card *ngFor="let apartment of page.content"
+                                         [apartment]="apartment"
+                                         [mobile]="mobile"
+                                         [currency]="params.currency"
+                                         (delete)="onApartmentDelete($event)">
+            </app-apartment-listings-card>
+          </div>
+
+          <div class="mt-4 justify-content-center">
+            <ngb-pagination
+              [(page)]="page.pageNumber"
+              [pageSize]="page.pageSize"
+              [collectionSize]="page.total"
+              (pageChange)="onPageChange($event)">
+            </ngb-pagination>
+          </div>
+        </div>
+
+        <div *ngIf="!page.content.length && !loading">
+          <h4 class="text-center loading-text mt-5">You don't list any apartments</h4>
+        </div>
+      </div>
+
+      <div class="spinner" *ngIf="loading">
+        <ngx-spinner type="pacman" size="medium" bdColor="rgba(255, 255, 255, 0)"
+                     color="rgb(38, 141, 144)" [fullScreen]="false">
+          <h4 class="ml-3 loading-text">Loading...</h4>
+        </ngx-spinner>
+      </div>
+    </div>
+  </div>
+</div>

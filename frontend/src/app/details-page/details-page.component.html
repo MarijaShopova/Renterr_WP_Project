@@ -1,0 +1,117 @@
+<div class="container">
+  <div class="my-4" *ngIf="apartment">
+
+    <div class="row mt-3 mt-lg-5 mb-4">
+      <div class="col-lg-10 col-12">
+        <h1 class="title">{{ apartment.title }}</h1>
+      </div>
+      <div class="col-lg-2 text-right my-auto currency-big">
+        <label for="currency">Currency: </label>
+        <select id="currency" class="form-control-sm ml-2" [(ngModel)]="currency">
+          <option value="EUR">EUR</option>
+          <option value="MKD">MKD</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 col-12 mb-4">
+        <div class="card main-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-8 col-lg-12 col-xl-12 align-baseline">
+                <h4><span class="fa fa-money"></span> {{ apartment.price | currency: currency }} /month</h4>
+              </div>
+              <div class="col-4 currency-small">
+                <select class="form-control-sm" [(ngModel)]="currency">
+                  <option value="EUR">EUR</option>
+                  <option value="MKD">MKD</option>
+                </select>
+              </div>
+            </div>
+            <hr>
+            <h4><span class="fa fa-calendar"></span> Available from: {{ apartment.dateAvailable | date | availableNow }}
+            </h4>
+            <hr>
+            <h4>
+              <span class="fa fa-map-marker"></span>&nbsp;{{ apartment.address }}, {{ apartment.municipality }}
+              , {{ apartment.city }}
+            </h4>
+            <app-map [address]="getFullAddress()"></app-map>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 col-12 mb-4">
+        <carousel [interval]="carouselInterval">
+          <slide *ngFor="let image of apartmentImages">
+            <img [src]="image" alt="Apartment image" class="carousel-image">
+          </slide>
+        </carousel>
+      </div>
+    </div>
+
+    <div class="row mb-3" *ngIf="apartment.description">
+      <div class="col-12">
+        <h3>Description</h3>
+        <p class="text-justify">{{ apartment.description }}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 col-12">
+        <div class="table-responsive">
+          <table class="table table-bordered text-center">
+            <thead>
+            <tr class="d-flex">
+              <th scope="col" class="col-3">Bedrooms</th>
+              <th scope="col" class="col-3">Tenants</th>
+              <th scope="col" class="col-3">Area</th>
+              <th scope="col" class="col-3">Floor</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="d-flex">
+              <td class="col-3">{{ apartment.numberBedrooms || '/' }}</td>
+              <td class="col-3">{{ apartment.numberTenants || '/'}}</td>
+              <td class="col-3">{{ apartment.area || '/' }} <span *ngIf="apartment.area">m<sup>2</sup></span></td>
+              <td class="col-3">{{ apartment.floor || '/' }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-responsive mt-2">
+          <table class="table table-bordered text-center">
+            <thead>
+            <tr class="d-flex">
+              <th scope="col" class="col-3">Parking</th>
+              <th scope="col" class="col-3">Elevator</th>
+              <th scope="col" class="col-3">Balcony</th>
+              <th scope="col" class="col-3">Heating</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="d-flex">
+              <td class="col-3"><span class="fa" [ngClass]="apartment.parking ? 'fa-check': 'fa-times'"></span></td>
+              <td class="col-3"><span class="fa" [ngClass]="apartment.elevator ? 'fa-check': 'fa-times'"></span></td>
+              <td class="col-3"><span class="fa" [ngClass]="apartment.balcony ? 'fa-check': 'fa-times'"></span></td>
+              <td class="col-3"><span class="fa" [ngClass]="apartment.heating ? 'fa-check': 'fa-times'"></span></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-12">
+        <app-owner-card [owner]="apartment.owner"></app-owner-card>
+      </div>
+    </div>
+  </div>
+
+  <ngx-spinner type="ball-spin" size="medium" [fullScreen]="false"
+               color="rgb(38, 141, 144)" bdColor="rgba(0, 0, 0, 0)">
+    <h4 class="mt-5" style="color: rgb(38, 141, 144)">Loading...</h4>
+  </ngx-spinner>
+</div>
+
+
+

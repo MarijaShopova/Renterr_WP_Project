@@ -1,0 +1,21 @@
+@media (max-width: 420px) {
+  .filters-lg {
+    display: none;
+  }
+
+  .filters-sm {
+    display: block;
+    margin-left: 4% !important;
+  }
+}
+
+@media( min-width: 420px){
+  .filters-lg {
+    display: flex;
+  }
+
+  .filters-sm {
+    display: none;
+  }
+}
+

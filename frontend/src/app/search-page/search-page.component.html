@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row my-4">
+    <div class="col-lg-4 col-sm-12 align-items-center">
+      <app-filters-form [ngClass]="{'show': showFilters && mobile}"
+                        [formValues]="params"
+                        (back)="showFilters = true"
+                        (filter)="filter($event)">
+      </app-filters-form>
+    </div>
+
+    <div class="col-lg-8 col-sm-12" [ngClass]="{'show': !showFilters && mobile}">
+      <div *ngIf="page">
+        <div class="text-center">
+          <button class="btn btn-outline-primary mb-3" (click)="showFilters = false" *ngIf="mobile">
+            More filters
+          </button>
+        </div>
+        <app-grid-options [currency]="params.currency"
+                          [total]="page.total"
+                          [sort]="params.sort"
+                          (optionsChanged)="onOptionsChange($event)">
+        </app-grid-options>
+
+        <div *ngIf="page.content.length && !loading">
+          <div class="card-deck align-items-center" *ngIf="page.content.length">
+            <app-apartment-card *ngFor="let apartment of page.content"
+                                [apartment]="apartment"
+                                [currency]="params.currency"
+                                [isFavourite]="favourites.includes(apartment.id)"
+                                (favouritesChanged)="onFavouritesChange($event)">
+            </app-apartment-card>
+          </div>
+
+          <div class="mt-4 justify-content-center">
+            <ngb-pagination [(page)]="page.pageNumber"
+                            [pageSize]="page.pageSize"
+                            [collectionSize]="page.total"
+                            (pageChange)="onPageChange($event)">
+            </ngb-pagination>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="page && !page.content.length && !loading">
+        <h4 class="loading-text text-center mt-5">No results found <span class="fa fa-frown-o"></span></h4>
+      </div>
+
+      <div class="spinner" *ngIf="loading">
+        <ngx-spinner type="pacman" size="medium" [fullScreen]="false"
+                     color="rgb(38, 141, 144)" bdColor="rgba(255, 255, 255, 0)">
+          <h4 class="ml-3 loading-text">Loading...</h4>
+        </ngx-spinner>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+

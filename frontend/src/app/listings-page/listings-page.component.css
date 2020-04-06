@@ -1,0 +1,48 @@
+.container {
+  min-height: 90vh;
+}
+
+:host >>> .page-item.active a.page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: #268d90 !important;
+  border-color: #268d90;
+}
+
+:host >>> .page-link {
+  color: #268d90;
+}
+
+.justify-content-center {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.loading-text {
+  color: rgb(38, 141, 144);
+  font-family: "Berlin Sans FB", sans-serif;
+}
+
+:host >>> .la-pacman {
+  top: 35% !important;
+}
+
+:host >>> .loading-text {
+  top: 45% !important;
+}
+
+@media (min-width: 420px) {
+  .listings {
+    min-height: 80vh;
+  }
+}
+
+@media(max-width: 420px){
+  .spinner {
+    height: 65vh;
+  }
+
+  :host >>> .loading-text {
+    margin-top: 5%;
+  }
+}

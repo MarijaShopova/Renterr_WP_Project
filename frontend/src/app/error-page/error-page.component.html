@@ -1,0 +1,9 @@
+<div class="background d-flex">
+  <div class="align-self-center border w-25 m-auto">
+    <div class="p-4 box text-center ">
+      <h1 class="display-1 font-weight-bolder">{{ error.status }}</h1>
+      <div>{{ error.message | uppercase }}</div>
+      <button class="btn btn-blue mt-4 w-75" (click)="onErrorButtonClicked()">{{ error.buttonText }}</button>
+    </div>
+  </div>
+</div>

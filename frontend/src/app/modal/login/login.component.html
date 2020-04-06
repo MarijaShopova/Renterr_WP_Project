@@ -1,0 +1,36 @@
+<div class="modal-body text-center">
+  <h3 class="mb-4 mt-2 text-primary">Welcome again!</h3>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="m-3">
+
+    <div class="form-group has-search">
+      <span class="fa fa-user form-control-feedback"></span>
+      <input type="text" class="form-control" formControlName="username" placeholder="Username" required >
+    </div>
+
+    <div class="form-group has-search inner-addon">
+      <span class="fa fa-lock form-control-feedback"></span>
+      <input class="form-control" formControlName="password" placeholder="Password"
+             [type]="passwordInputType ? 'text' : 'password'" required >
+      <span [class]="showEye ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="onShowPassword()"></span>
+    </div>
+
+    <div class="alert alert-danger px-1 py-2" *ngIf="errorMessage">
+      <p class="m-0">{{ errorMessage }}</p>
+    </div>
+
+    <div>
+      <button class="btn btn-primary submit" type="submit" [disabled]="!loginForm.valid">Log in</button>
+    </div>
+
+    <div class="register pt-1">
+      Not registered? <a routerLink="/signup" (click)="activeModal.dismiss()">Sign up</a>
+    </div>
+  </form>
+</div>
+
+<ngx-spinner type="ball-spin" size="medium" [fullScreen]="false"
+             color="white" bdColor="rgba(0, 0, 0, 0.7)">
+  <h5 class="mt-5 pt-5 text-white">Logging in...</h5>
+</ngx-spinner>
+
+

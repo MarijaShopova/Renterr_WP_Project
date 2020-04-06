@@ -1,0 +1,38 @@
+<div class="card" *ngIf="account">
+  <div class="card-body text-center text-white">
+    <div class="content mb-3" (click)="fileInput.click()">
+      <div class="content-overlay rounded-circle"></div>
+      <img class="content-image img-fluid rounded-circle" src="{{ account.profilePicture }}"
+           alt="Profile pic of {{ account.firstName }}">
+      <div class="content-details fadeIn-bottom">
+        <p class="content-text"><span class="fa fa-edit"></span> Click to change profile picture</p>
+      </div>
+    </div>
+    <h3 class="mb-0">{{ account.firstName }} {{ account.lastName }}</h3>
+    <h6 class="mt-0" *ngIf="account.city && account.country; else partialLocation">
+      {{ account.city }}, {{ account.country }}
+    </h6>
+    <ng-template #partialLocation>
+      <h6 class="mt-0" *ngIf="account.city || account.country">{{ account.city }}{{ account.country }}</h6>
+    </ng-template>
+    <hr>
+    <h5>Account details</h5>
+    <ul>
+      <li>Username: {{ account.username }}</li>
+      <li>Email: {{ account.email }}</li>
+      <li>Phone: {{ account.phone }}</li>
+    </ul>
+    <button type="button" class="btn btn-light mt-3" (click)="onEdit()">
+      <span class="fa fa-edit"></span> Edit Account
+    </button>
+    <button type="button" class="btn btn-danger mt-2" (click)="onDeactivate()">
+      <span class="fa fa-trash-o"></span> Deactivate Account
+    </button>
+  </div>
+</div>
+
+<input type="file" accept="image/*" #fileInput (change)="onImageSelected($event)"/>
+
+
+
+

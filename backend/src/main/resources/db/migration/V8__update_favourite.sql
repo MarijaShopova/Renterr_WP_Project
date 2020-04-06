@@ -1,0 +1,10 @@
+insert into favourites (account_id, apartment_id) values (1, 7);
+insert into favourites (account_id, apartment_id) values (1, 4);
+insert into favourites (account_id, apartment_id) values (1, 8);
+insert into favourites (account_id, apartment_id) values (1, 11);
+insert into favourites (account_id, apartment_id) values (1, 30);
+insert into favourites (account_id, apartment_id) values (3, 3);
+insert into favourites (account_id, apartment_id) values (6, 6);
+insert into favourites (account_id, apartment_id) values (9, 22);
+insert into favourites (account_id, apartment_id) values (7, 26);
+insert into favourites (account_id, apartment_id) values (5, 26);

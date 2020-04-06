@@ -1,0 +1,93 @@
+<section class="home-page-top-section  d-flex justify-content-center align-items-center">
+  <div class="home-page-form text-center text-white">
+    <div class="pb-3 display-4">Find a home in the best student cities in Macedonia</div>
+    <form [formGroup]="filterForm" (ngSubmit)="onSearch()">
+      <div class="row pt-5 home-page-top-row">
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-2 p-1">
+          <select class="custom-select" formControlName="city">
+            <option value="null" selected hidden>Choose city...</option>
+            <option value="">All cities</option>
+            <option *ngFor="let city of ['Skopje', 'Ohrid', 'Stip']" [value]="city">{{ city }}</option>
+          </select>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-2 p-1">
+          <input type="text" ngbDatepicker #d="ngbDatepicker"
+                 (click)="d.toggle()" class="form-control-lg date-picker"
+                 placeholder="Move in date..." formControlName="dateAvailable"
+                 [minDate]="ngbCalendar.getToday()"/>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-2 p-1">
+          <select class="custom-select" formControlName="numTenants">
+            <option value="null" selected hidden>Tenants...</option>
+            <option value="">Any number</option>
+            <option *ngFor="let num of [1, 2, 3, 4, 5]" [value]="num">{{ num }}</option>
+          </select>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-2 p-1">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="how-it-works-section">
+  <div class="container">
+    <h1 class="text-center mb-4 mt-2 section-header">How Renterr works</h1>
+    <h5 class="how-it-works-section-text text-center">Renterr is an innovative service for students
+      like you that take a fresh approach in finding student accommodation online. It lets you browse
+      through thousands of trusted properties in Macedonia’s best student cities.</h5>
+    <div class="row py-4 text-center">
+      <div class="col-4">
+        <img src="../../assets/how-it-works/how-it-works-image-1.png" alt="How it works image 1"
+             class="img-fluid rounded-circle"/>
+        <h4 class="how-it-works-img-text mt-2">Find your place</h4>
+      </div>
+      <div class="col-4">
+        <img src="../../assets/how-it-works/how-it-works-image-2.png" alt="How it works image 2"
+             class="img-fluid rounded-circle"/>
+        <h4 class="how-it-works-img-text mt-2">Contact the landlord</h4>
+      </div>
+      <div class="col-4">
+        <img src="../../assets/how-it-works/how-it-works-image-3.png" alt="How it works image 3"
+             class="img-fluid rounded-circle"/>
+        <h4 class="how-it-works-img-text mt-2">Move in and live it!</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="list-property-section text-white py-5 mt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-sm-12 offset-1">
+        <h4>Are you a landlord looking for students?</h4>
+        <div class="pt-2 pr-5 list-property-section-text text-justify">
+          Every year thousands of students are looking for a new home in Skopje. They are looking for mid to
+          long-term stays and great landlords like you. Do you have a place to rent?
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-12 text-center mt-3">
+        <a class="text-decoration-none" (click)="onAddNewApartment($event)">
+          <button class="btn list-property-section-button p-3">
+            <div class="row">
+              <div class="col-9">List your Property Now!</div>
+              <div class="col-3 mt-1"><span class="arrow"></span></div>
+            </div>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="city-card-section" *ngIf="statistics.length">
+  <div class="container">
+    <h1 class="text-center mb-5 mt-1 section-header">Our Places</h1>
+    <div class="row py-4">
+      <div class="col-4 my-3" *ngFor="let statistic of statistics">
+        <app-city-card [statistics]="statistic"></app-city-card>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,143 @@
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+
+.home-page-form {
+  width: 60%;
+  margin: auto;
+}
+
+.date-picker {
+  width: inherit;
+}
+
+.custom-select, .btn-primary {
+  -webkit-appearance: none;
+  height: 50px;
+  width: inherit;
+  font-size: 1.25rem;
+}
+
+::-webkit-input-placeholder, .date-picker, .custom-select:first-child {
+  color: #adadad;
+  font-weight: bold;
+}
+
+.custom-select option {
+  color: #268d90;
+}
+
+.home-page-top-section {
+  background: url("../../assets/background-images/home-page-background.jpg");
+  background-size: cover;
+  height: 550px;
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+}
+
+.city-card-section {
+  padding-bottom: 60px;
+  background-image: url("../../assets/cities/background_cities.jpg");
+  background-repeat: no-repeat;
+}
+
+.list-property-section {
+  background-color: #268d90;
+}
+
+.section-header {
+  padding-top: 5%;
+  color: #26b8bb;
+  text-shadow: #f3f7f9 2px 2px;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  font-family: 'Pacifico', sans-serif;
+}
+
+.how-it-works-section-text {
+  color: #26b8bb;
+  width: 80%;
+  margin: auto;
+}
+
+.how-it-works-section img {
+  max-width: 250px;
+}
+
+.how-it-works-img-text {
+  color: #26b8bb;
+}
+
+.list-property-section-button {
+  display: inline-block;
+  width: 100%;
+  border-radius: 6px;
+  background: white;
+  border: none;
+  color: #268d90;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 10px;
+  line-height: 1em;
+  transition: all 0.4s;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.list-property-section-button:hover {
+  background-color: #268d90;
+  border: 1px solid white;
+  color: white;
+}
+
+.arrow:before {
+  content: '\00bb';
+  font-size: 1.8em;
+}
+
+@media (max-width: 420px) {
+  .display-4, .how-it-works-section h1, .city-card-section h1 {
+    font-size: 2em;
+    text-align: center;
+  }
+
+  .city-card-section h1 {
+    margin-bottom: 0 !important;
+  }
+
+  .home-page-top-content {
+    display: none;
+  }
+
+  .list-property-section-button {
+    font-size: 0.7em !important;
+    width: 82% !important;
+    display: inline-block;
+    margin-top: 15px !important;
+  }
+
+  .list-property-section-button .col-9 {
+    margin-top: 5px;
+  }
+
+  .city-card-section {
+    background-image: none !important;
+    padding-bottom: 10px !important;
+  }
+
+  .city-card-section .col-4 {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .how-it-works-section img {
+    max-width: 100% !important;
+  }
+
+  .how-it-works-section h4, .how-it-works-section-text, .list-property-section-text {
+    font-size: 0.8rem !important;
+  }
+
+  .custom-select, .date-picker, .home-page-top-section .btn {
+    font-size: 1rem !important;
+  }
+}

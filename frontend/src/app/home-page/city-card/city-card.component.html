@@ -1,0 +1,17 @@
+<a [routerLink]="['/search']"
+   [queryParams]="{city: statistics.city, page: 0, sort: 'datePosted,desc', currency: 'EUR'}" class="border">
+  <div class="content shadow-lg rounded">
+    <div class="content-overlay"></div>
+    <h2 class="content-header text-white">{{ statistics.city }}</h2>
+    <img class="content-image" src='../../assets/cities/{{ statistics.city }}.jpg' alt="Image of {{ statistics.city }}">
+    <div class="content-details fadeIn-top">
+      <h3>{{ statistics.city }}</h3>
+      <div>
+        <p>Studio: {{ statistics.studioApartment }}</p>
+        <p>One bedroom: {{ statistics.oneBedroomApartment }}</p>
+        <p>Two bedroom: {{ statistics.twoBedroomApartment }}</p>
+        <p>Three bedroom: {{ statistics.threeBedroomApartment }}</p>
+      </div>
+    </div>
+  </div>
+</a>

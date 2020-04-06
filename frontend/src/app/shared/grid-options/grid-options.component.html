@@ -1,0 +1,42 @@
+<div class="row filters-lg">
+  <div class="col-10">
+    <div class="form-group">
+      <label for="sort-criteria">Sort by: </label>
+      <select id="sort-criteria" class="form-control-sm ml-2" [(ngModel)]="sort" (change)="onOptionsChange(true)">
+        <option value="datePosted,desc">Recently Added</option>
+        <option value="price,asc">Price - Low to High</option>
+        <option value="price,desc">Price - High to Low</option>
+      </select>
+      &nbsp;&nbsp;
+      <label for="currency">Currency: </label>
+      <select id="currency" class="form-control-sm ml-2" [(ngModel)]="currency" (change)="onOptionsChange(false)">
+        <option value="EUR">EUR</option>
+        <option value="MKD">MKD</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-2 text-right">Total results: {{ total }}</div>
+</div>
+
+<div class="filters-sm">
+  <div class="row mb-1 text-left">
+    <div class="col-6 ml-3">Sort by: </div>
+    <div class="col-5">Currency: </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-6">
+      <select class="form-control-sm" [(ngModel)]="sort" (change)="onOptionsChange(true)">
+        <option value="datePosted,desc">Recently Added</option>
+        <option value="price,asc">Price - Low to High</option>
+        <option value="price,desc">Price - High to Low</option>
+      </select>
+    </div>
+    <div class="col-5 m-auto">
+      <select class="form-control-sm w-100" [(ngModel)]="currency" (change)="onOptionsChange(false)">
+        <option value="EUR">EUR</option>
+        <option value="MKD">MKD</option>
+      </select>
+    </div>
+  </div>
+  <h5 class="text-center mt-5 mb-4"> Total results: {{ total }}</h5>
+</div>

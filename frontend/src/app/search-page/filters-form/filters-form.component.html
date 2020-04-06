@@ -1,0 +1,131 @@
+<form class="border p-4" [formGroup]="filterForm" (ngSubmit)="onFiltersChange()">
+  <button class="btn btn-outline-primary mb-4" type="button" (click)="back.emit()"><span
+    class="fa fa-arrow-left"></span> Back
+  </button>
+  <h3 class="mb-4 text-center">Add additional filters</h3>
+
+  <div class="form-group">
+    <label for="city">City: </label>
+    <select class="form-control" id="city" formControlName="city" (change)="filterForm.patchValue({municipality: ''})">
+      <option value="">All cities</option>
+      <option *ngFor="let val of ['Skopje', 'Ohrid', 'Stip']" [value]="val">{{ val }}</option>
+    </select>
+  </div>
+
+  <div class="form-group" *ngIf="filterForm.get('city').value != ''">
+    <label for="municipality">Municipality: </label>
+    <select class="form-control" id="municipality" formControlName="municipality">
+      <option value="">All municipalities</option>
+      <option *ngFor="let val of municipalityMap[filterForm.get('city').value]" [value]="val">{{ val }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="dateAvailable">Move in date: </label>
+    <input id="dateAvailable" type="text" class="form-control date-picker" ngbDatepicker #d="ngbDatepicker"
+           formControlName="dateAvailable" (click)="d.toggle()" [minDate]="ngbCalendar.getToday()"
+           placeholder="Choose move in date..."/>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-6">
+      <label for="numBedrooms">No. Bedrooms: </label>
+      <select class="form-control" id="numBedrooms" formControlName="numBedrooms">
+        <option value="">Any</option>
+        <option value="0">Studio</option>
+        <option value="1">One Bedroom</option>
+        <option value="2">Two Bedroom</option>
+        <option value="3">Three Bedroom</option>
+      </select>
+    </div>
+    <div class="col-6">
+      <label for="numTenants">No. Tenants: </label>
+      <input type="number" id="numTenants" class="form-control"
+             formControlName="numTenants" min="1" max="6"
+             placeholder="Enter Tenants...">
+      <div *ngIf="!form.numTenants.valid && form.numTenants.touched">
+        <div class="invalid-msg" *ngIf="form.numTenants.hasError('min')">Minimum number is 1</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-6">
+      <label for="minPrice">Min price (EUR): </label>
+      <input type="number" id="minPrice" class="form-control" formControlName="minPrice" placeholder="Enter value...">
+    </div>
+    <div class="col-6">
+      <label for="maxPrice">Max price (EUR): </label>
+      <input type="number" id="maxPrice" class="form-control" formControlName="maxPrice" placeholder="Enter value...">
+    </div>
+
+    <div class="col-12">
+      <div *ngIf="!filterForm.valid && filterForm.touched">
+        <div class="invalid-msg" *ngIf="filterForm.hasError('priceRange')">Minimum price must be smaller than maximum
+          price
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-6">
+      <label for="minArea">Min area (m<sup>2</sup>): </label>
+      <input type="number" id="minArea" class="form-control" formControlName="minArea" placeholder="Enter value...">
+    </div>
+    <div class="col-6">
+      <label for="maxArea">Max area (m<sup>2</sup>):</label>
+      <input type="number" id="maxArea" class="form-control" formControlName="maxArea" placeholder="Enter value...">
+    </div>
+    <div class="col-12">
+      <div *ngIf="!filterForm.valid && filterForm.touched">
+        <div class="invalid-msg" *ngIf="filterForm.hasError('areaRange')">Minimum area must be smaller than maximum
+          area
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-6 pr-0">
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="heating" formControlName="heating">
+        <label class="custom-control-label" for="heating">
+          <img src="../../../assets/icons/heating-icon.png" class="img-fluid icons" alt="heating icon"/> Central Heating
+        </label>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="balcony" formControlName="balcony">
+        <label class="custom-control-label" for="balcony">
+          <img src="../../../assets/icons/balcony-icon.png" class="img-fluid icons" alt="balcony icon"/> Balcony
+        </label>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="parking" formControlName="parking">
+        <label class="custom-control-label" for="parking">
+          <img src="../../../assets/icons/parking-icon.png" class="img-fluid icons" alt="parking icon"/> Parking
+        </label>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="elevator" formControlName="elevator">
+        <label class="custom-control-label" for="elevator">
+          <img src="../../../assets/icons/elevator-icon.png" class="img-fluid icons" alt="elevator icon"/> Elevator
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-xl-6 col-sm-12 mb-2 mb-sm-0">
+      <button type="button" class="btn btn-light w-100 border" (click)="clearFilters()">Clear Filters</button>
+    </div>
+    <div class="col-lg-6 col-xl-6 col-sm-12">
+      <button type="submit" class="btn btn-blue">Search</button>
+    </div>
+  </div>
+</form>

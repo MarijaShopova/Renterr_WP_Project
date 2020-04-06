@@ -1,0 +1,105 @@
+.card {
+  background-color: #268d90;
+  box-shadow: 0 0 20px -5px rgba(0, 0, 0, 0.67);
+  font-family: "Berlin Sans FB", sans-serif;
+}
+
+hr {
+  background: white;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  width: 100%;
+}
+
+img {
+  border: white 2px solid;
+  width: 200px;
+  height: 200px;
+}
+
+.content {
+  position: relative;
+  width: 90%;
+  max-width: 200px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.content .content-overlay {
+  background: rgba(0,0,0,0.7);
+  border: white 2px solid;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  -moz-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+
+.content:hover .content-overlay{
+  opacity: 1;
+  cursor: pointer;
+}
+
+.content-image{
+  width: 100%;
+}
+
+.content-details {
+  position: absolute;
+  text-align: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -moz-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.content:hover .content-details{
+  top: 57%;
+  left: 50%;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.content-details p{
+  color: #fff;
+  font-size: 0.8em;
+}
+
+.btn-light {
+  color: #268d90;
+}
+
+.fadeIn-bottom{
+  top: 80%;
+}
+
+input[type='file'] {
+  visibility: hidden;
+}
+
+@media (max-width: 420px) {
+  .card {
+    margin: 30px;
+  }
+}

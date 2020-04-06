@@ -1,0 +1,74 @@
+<form class="p-4" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <h3 class="text-center form-title">Edit Renterr Account</h3>
+  <hr class="mb-4">
+
+  <div class="form-group row">
+    <label class="col-lg-2 col-form-label">Name</label>
+    <div class="col-lg-5" id="name-input-sm">
+      <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name"
+             formControlName="firstName">
+      <div *ngIf="!form.firstName.valid && form.firstName.touched">
+        <div class="invalid-msg" *ngIf="form.firstName.hasError('required')">First name is required</div>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name"
+             formControlName="lastName">
+      <div *ngIf="!form.lastName.valid && form.lastName.touched">
+        <div class="invalid-msg" *ngIf="form.lastName.hasError('required')">Last name is required</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-lg-2 col-form-label">From</label>
+    <div class="col-lg-5" id="city-input-sm">
+      <input type="text" class="form-control" id="city" name="city" placeholder="City" formControlName="city">
+    </div>
+    <div class="col-lg-5">
+      <input type="text" class="form-control" id="country" name="country" placeholder="Country"
+             formControlName="country">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="email" class="col-lg-2 col-form-label">Email</label>
+    <div class="col-lg-10">
+      <input type="text" class="form-control" id="email" name="email" placeholder="Email"
+             formControlName="email">
+      <div *ngIf="!form.email.valid && form.email.touched">
+        <div class="invalid-msg" *ngIf="form.email.hasError('required')">Email is required</div>
+        <div class="invalid-msg" *ngIf="form.email.hasError('email')">Please enter a valid email address</div>
+        <div class="invalid-msg" *ngIf="form.email.hasError('emailTaken')">Account with that email already exists</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="phone" class="col-lg-2 col-form-label">Phone</label>
+    <div class="col-lg-10">
+      <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" formControlName="phone">
+      <div *ngIf="!form.phone.valid && form.phone.touched">
+        <div class="invalid-msg" *ngIf="form.phone.hasError('required')">Phone is required</div>
+        <div class="invalid-msg" *ngIf="form.phone.hasError('pattern')">Please enter a valid phone number</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-lg-6 col-sm-12">
+      <button class="btn btn-danger btn-lg" type="button" (click)="this.activeModal.dismiss()">Cancel</button>
+    </div>
+    <div class="col-lg-6 col-sm-12" id="lower-button">
+      <button class="btn btn-primary btn-lg" type="submit">Confirm Changes</button>
+    </div>
+  </div>
+
+</form>
+
+<ngx-spinner type="ball-spin" size="medium" [fullScreen]="true"
+             color="white" bdColor="rgba(0, 0, 0, 0.8)">
+  <h4 class="mt-5 text-white">Updating account...</h4>
+</ngx-spinner>

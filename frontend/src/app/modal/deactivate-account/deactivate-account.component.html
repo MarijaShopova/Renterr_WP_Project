@@ -1,0 +1,28 @@
+<form class="p-4" [formGroup]="form" (ngSubmit)="onDeactivate()">
+  <h6 class="text-justify">Please enter password to confirm your account deactivation.
+    Once you deactivate your account, it is deleted forever and can't be restored.</h6>
+  <div class="form-group row my-4">
+    <label for="password" class="col-lg-3 col-form-label">Password</label>
+    <div class="col-lg-9">
+      <input class="form-control" id="password" name="password" type="password" formControlName="password">
+      <div *ngIf="!password.valid && password.touched">
+        <div class="invalid-msg" *ngIf="password.hasError('required')">Password is required</div>
+        <div class="invalid-msg" *ngIf="password.hasError('incorrectPassword')">Incorrect Password</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-lg btn-primary" (click)="activeModal.dismiss()">Cancel</button>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-lg btn-danger">Deactivate</button>
+    </div>
+  </div>
+</form>
+
+<ngx-spinner type="ball-spin" size="medium" [fullScreen]="true"
+             color="white" bdColor="rgba(0, 0, 0, 0.8)">
+  <h4 class="mt-5 text-white">Please wait...</h4>
+</ngx-spinner>

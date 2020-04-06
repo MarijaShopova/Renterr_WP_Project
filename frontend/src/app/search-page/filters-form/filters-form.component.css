@@ -1,0 +1,47 @@
+form {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.icons{
+  vertical-align: top !important;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+  background-color: #268d90;
+}
+
+.btn-blue{
+  width: 100%;
+  background-color: #268d90;
+  color: white;
+}
+
+.btn-blue:hover{
+  background-color: #245c5f;
+}
+
+.btn-outline-primary {
+  display: none;
+}
+
+@media(max-width: 420px){
+  .btn-outline-primary {
+    display: block;
+  }
+}
+
+.invalid-msg {
+  color: red;
+  font-size: 0.8em;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+h3 {
+  color: #268d90;
+  font-family: "Berlin Sans FB", "sans-serif";
+  font-size: 2em;
+  font-weight: normal;
+}

@@ -1,0 +1,40 @@
+.submit {
+  width: 100% !important;
+}
+
+.register {
+  font-size: 0.7em;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #999999;
+}
+
+.form-control {
+  padding-right: 30px;
+}
+
+.form-control + .fa {
+  color: #686868;
+  position: absolute;
+  right: 0;
+  margin-top: -27px;
+  padding-right: 45px;
+}
+
+p {
+  font-size: 0.9rem;
+}
+

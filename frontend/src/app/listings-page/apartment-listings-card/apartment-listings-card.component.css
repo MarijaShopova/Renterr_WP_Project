@@ -1,0 +1,79 @@
+@media (max-width: 420px) {
+  .btn-blue, .col-sm-12 .btn-danger {
+    width: 100%;
+    margin-left: 0 !important;
+    margin-top: 3% !important;
+  }
+
+  h3 {
+    font-size: 1.4em !important;
+    margin-top: 4% !important;
+  }
+
+  .toggle-button {
+    text-align: left!important;
+  }
+}
+
+.mobile-buttons-text {
+  display: inline !important;
+  margin-right: 5% !important;
+  color: white !important;
+}
+
+.active-title {
+  color: #268d90;
+  font-size: 1.1em !important;
+  vertical-align: top;
+  font-weight: bold;
+}
+
+.list-card {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.toggle-button {
+  text-align: right;
+}
+
+.img-fluid {
+  height: 200px;
+}
+
+.text-blue {
+  color: gray;
+}
+
+.col-3 button {
+  width: 100%;
+}
+
+h3, h4 {
+  color: #268d90;
+}
+
+.btn-blue {
+  background-color: #268d90;
+  color: white;
+  text-decoration: none !important;
+}
+
+.btn-blue:hover {
+  background-color: #256b6e;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.active {
+  font-weight: bold;
+  color: #268d90;
+  font-size: 1.3em;
+}
+
+.modal-button {
+  width: 40%;
+}
+
+::ng-deep .switch.switch-medium {
+  min-width: 70px !important;
+}

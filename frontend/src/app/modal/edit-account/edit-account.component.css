@@ -1,0 +1,30 @@
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.invalid-msg {
+  color: red;
+  font-size: 0.8em;
+}
+
+button {
+  width: 100%;
+}
+
+.form-title {
+  color: #268d90;
+  font-family: "Berlin Sans FB", "sans-serif";
+  font-size: 2em;
+  font-weight: normal;
+}
+
+@media (max-width: 420px) {
+
+  #lower-button {
+    margin-top: 10px;
+  }
+
+  #city-input-sm, #name-input-sm {
+    margin-bottom: 10px;
+  }
+}

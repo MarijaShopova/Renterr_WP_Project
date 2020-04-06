@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-lg-3 col-xl-3 col-12 account">
+      <app-account-details-card></app-account-details-card>
+    </div>
+    <div class="col-lg-9 col-xl-9 col-12">
+      <div *ngIf="page">
+        <app-grid-options [currency]="params.currency"
+                          [total]="page.total"
+                          [sort]="params.sort"
+                          (optionsChanged)="onOptionsChange($event)">
+        </app-grid-options>
+
+        <div *ngIf="page.content.length && !loading">
+          <div class="card-deck align-items-center">
+            <app-apartment-card *ngFor="let apartment of page.content"
+                                [apartment]="apartment"
+                                [currency]="params.currency"
+                                [isFavourite]="getFavourites().includes(apartment.id)"
+                                (favouritesChanged)="onFavouritesChanged($event)">
+            </app-apartment-card>
+          </div>
+
+          <div class="mt-4 justify-content-center">
+            <ngb-pagination
+              [(page)]="page.pageNumber"
+              [pageSize]="page.pageSize"
+              [collectionSize]="page.total"
+              (pageChange)="onPageChange($event)">
+            </ngb-pagination>
+          </div>
+        </div>
+
+        <div *ngIf="!page.content.length && !loading">
+          <h4 class="text-center loading-text mt-5">You don't have any apartments in favourites</h4>
+        </div>
+      </div>
+
+      <div class="spinner" *ngIf="loading">
+        <ngx-spinner type="pacman" size="medium" [fullScreen]="false"
+                     color="rgb(38, 141, 144)" bdColor="rgba(255, 255, 255, 0)">
+          <h4 class="ml-3 loading-text">Loading...</h4>
+        </ngx-spinner>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

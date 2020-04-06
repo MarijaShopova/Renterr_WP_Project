@@ -1,0 +1,30 @@
+.card {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  min-height: 420px;
+  max-width: 255px;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+#heart-link:hover .fa-heart-o:before {
+  content: "\f004";
+}
+
+.card-footer{
+  background: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+#heart-link {
+  border: none;
+  background: transparent;
+}
+
+#heart-link:focus {
+  outline: none;
+}

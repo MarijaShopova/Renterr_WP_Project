@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-5">
+        <img [src]="owner.profilePicture" alt="Owner profile picture" class="rounded-circle img-fluid">
+      </div>
+      <div class="col-7">
+        <a [href]="'mailto:' + owner.email" class="btn-sm btn-light" style="float: right;">
+          <span class="fa fa-envelope-o text-primary"></span>
+        </a>
+        <h4>Landlord details</h4>
+        <hr>
+        Name: {{ owner.firstName }} {{ owner.lastName }} <br>
+        <span *ngIf="owner.city && owner.country; else partialLocation">From: {{ owner.city }}, {{ owner.country }} <br></span>
+        <ng-template #partialLocation>
+          <span *ngIf="owner.city || owner.country">From: {{ owner.city }}{{ owner.country }} <br></span>
+        </ng-template>
+        Phone: {{ owner.phone }} <br>
+        Email: {{ owner.email }} <br>
+      </div>
+    </div>
+  </div>
+</div>

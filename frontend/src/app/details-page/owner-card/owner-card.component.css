@@ -1,0 +1,43 @@
+.card {
+  background-color: #268d90;
+  color: white;
+  box-shadow: 0 0 20px -3px rgba(0, 0, 0, 0.67);
+}
+
+hr {
+  background: white;
+}
+
+img {
+  border: white 2px solid;
+  width: 190px;
+  height: 190px;
+}
+
+@media (max-width: 420px){
+
+  img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .card {
+    text-align: center;
+  }
+
+  .card, .fa-envelope-o {
+    font-size: 0.8rem;
+  }
+
+  .card h4 {
+    font-size: 1rem;
+  }
+
+  .col-5 {
+    margin: auto;
+  }
+
+  .btn-sm {
+    padding: 2px 4px !important;
+  }
+}

@@ -1,0 +1,30 @@
+.background {
+  background: url("../../assets/background-images/error-background.jpg") no-repeat center center fixed;
+  min-height: 100vh;
+  background-size: cover;
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6);
+}
+
+.border {
+  border: 15px solid white !important;
+}
+
+.box {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.btn-blue {
+  width: 100%;
+  background-color: rgba(89, 9, 19, 0.76);
+  color: white;
+}
+
+.btn-blue:hover {
+  background-color: rgba(89, 9, 19, 0.88);
+}
+
+@media(max-width: 420px) {
+  .border {
+    width: 75% !important;
+  }
+}

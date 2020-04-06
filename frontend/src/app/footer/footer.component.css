@@ -1,0 +1,10 @@
+.footer {
+  background-color: #268d90;
+}
+
+@media (max-width: 420px) {
+  .footer {
+    font-size: 0.8rem;
+  }
+}
+

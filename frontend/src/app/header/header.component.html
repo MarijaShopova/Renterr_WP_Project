@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container-fluid">
+    <a routerLink="/" class="navbar-brand">
+      <span class="fa fa-home"></span>
+      <span class="display-5 pl-2">Renterr</span>
+    </a>
+    <button class="navbar-toggler" (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="navbarMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMenu" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/search" routerLinkActive="active-link"
+             [queryParams]="{page: 0, sort: 'datePosted,desc', currency: 'EUR'}">
+            <span class="fa fa-search mr-1"></span> Search
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" (click)="goToListNewApartment()">
+            <span class="fa fa-building mr-1"></span> List your apartment
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="authenticationService.isUserLoggedIn() && mobile">
+          <a class="nav-link" routerLink="/my-profile" routerLinkActive="active-link">
+            <span class="fa fa-user mr-1"></span> My Profile
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="authenticationService.isUserLoggedIn()">
+          <a class="nav-link" routerLink="/my-apartments" routerLinkActive="active-link">
+            <span class="fa fa-th-list mr-1"></span> My apartments
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="authenticationService.isUserLoggedIn()">
+          <a class="nav-link" routerLink="/favourites" routerLinkActive="active-link"
+             [queryParams]="{page: 0, sort: 'datePosted,desc', currency: 'EUR'}">
+            <span class="fa fa-heart mr-1"></span> Favourites
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="authenticationService.isUserLoggedIn() && mobile">
+          <a class="nav-link" (click)="authenticationService.logout()">
+            <span class="fa fa-sign-out mr-1"></span> Sign out
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="authenticationService.isUserLoggedIn() && !mobile">
+          <div ngbDropdown class="d-inline-block dropdown">
+            <button class="btn btn-default" id="dropdownBasic1" ngbDropdownToggle>
+              <span class="pr-2">{{user.firstName}} {{ user.lastName}}</span>
+              <img src="{{user.profilePicture}}" class="rounded-circle img-fluid profile-pic" alt="Profile Picture"/>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem (click)="router.navigate(['/my-apartments'])"> My profile</button>
+              <button ngbDropdownItem (click)="authenticationService.logout()">Sign out</button>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item" *ngIf="!authenticationService.isUserLoggedIn()">
+          <a class="nav-link" routerLink="/login">
+            <span class="fa fa-user-o mr-1"></span> Sign In
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="!authenticationService.isUserLoggedIn()">
+          <a class="nav-link p-0" routerLink="/signup">
+            <span class="fa fa-user-plus"></span><span class="btn btn-outline-blue badge-pill">Sign Up</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

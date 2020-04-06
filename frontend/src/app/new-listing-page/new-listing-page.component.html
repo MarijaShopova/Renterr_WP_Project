@@ -1,0 +1,244 @@
+<div class="bg-image py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-sm-12 mx-auto">
+        <form class="border p-4 rounded" [formGroup]="apartmentForm" (ngSubmit)="onSubmit()">
+          <h3 class="mb-4 text-center">{{ formTitle() }}</h3>
+          <div class="row mt-1">
+            <div class="col-lg-6 col-sm-12 border-right px-4 left-part">
+              <div class="form-group">
+                <label for="city">Title: </label>
+                <input #title type="text" class="form-control" id="title" name="title" formControlName="title"/>
+                <div *ngIf="!form.title.valid && form.title.touched">
+                  <div class="invalid-msg" *ngIf="form.title.hasError('required')">The title is required</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="city">City: </label>
+                <select class="form-control" id="city" formControlName="city">
+                  <option *ngFor="let val of ['Skopje', 'Ohrid', 'Stip']" [value]="val">{{ val }}</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="city">Municipality: </label>
+                <select class="form-control" id="municipality" name="municipality" formControlName="municipality">
+                  <option *ngFor="let val of municipalityMap[apartmentForm.get('city').value]" [value]="val">
+                    {{ val }}
+                  </option>
+                </select>
+                <div *ngIf="!form.municipality.valid && form.municipality.touched">
+                  <div class="invalid-msg" *ngIf="form.municipality.hasError('required')">Municipality is required</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-7">
+                    <label for="address">Address: </label>
+                    <input type="text" class="form-control" id="address" name="address" formControlName="address"/>
+                    <div *ngIf="!form.address.valid && form.address.touched">
+                      <div class="invalid-msg" *ngIf="form.address.hasError('required')">Address is required</div>
+                    </div>
+                  </div>
+                  <div class="col-5">
+                    <label for="floor">Floor: </label>
+                    <input type="number" class="form-control" id="floor" name="floor" formControlName="floor" min="0"/>
+                    <div *ngIf="!form.floor.valid && form.floor.touched">
+                      <div class="invalid-msg" *ngIf="form.floor.hasError('min')">Floor cannot be negative</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-7">
+                    <label for="dateAvailable">Available from: </label>
+                    <input id="dateAvailable" type="text" class="form-control date-picker" ngbDatepicker
+                           #d="ngbDatepicker"
+                           formControlName="dateAvailable" (focus)="d.open()"/>
+                  </div>
+                  <div class="col-5">
+                    <label for="area">Area (m<sup>2</sup>): </label>
+                    <input type="number" class="form-control" id="area" name="area" formControlName="area" min="0"/>
+                    <div *ngIf="!form.area.valid && form.area.touched">
+                      <div class="invalid-msg" *ngIf="form.area.hasError('min')">Area cannot be negative</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-7">
+                    <label for="price">Price (monthly): </label>
+                    <input type="number" class="form-control" id="price" name="price" formControlName="price" min="1"/>
+                    <div *ngIf="!form.price.valid && form.price.touched">
+                      <div class="invalid-msg" *ngIf="form.price.hasError('required')">Price is required</div>
+                      <div class="invalid-msg" *ngIf="form.price.hasError('min')">Price must be greater than zero</div>
+                    </div>
+                  </div>
+                  <div class="col-5">
+                    <label>Currency: </label>
+                    <div class="form-control">EUR</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-lg-6 col-sm-12 px-4">
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-7">
+                    <label for="numBedrooms">No. Bedrooms: </label>
+                    <select class="form-control" id="numBedrooms" name="numBedrooms" formControlName="numberBedrooms">
+                      <option value="0">Studio</option>
+                      <option value="1">One Bedroom</option>
+                      <option value="2">Two Bedroom</option>
+                      <option value="3">Three Bedroom</option>
+                    </select>
+                    <div *ngIf="!form.numberBedrooms.valid && form.numberBedrooms.touched">
+                      <div class="invalid-msg" *ngIf="form.numberBedrooms.hasError('required')">Number of bedrooms is
+                        required
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-5">
+                    <label for="numTenants">No. Tenants: </label>
+                    <input type="number" class="form-control" id="numTenants" name="numTenants"
+                           formControlName="numberTenants" min="1">
+                    <div *ngIf="!form.numberTenants.valid && form.numberTenants.touched">
+                      <div class="invalid-msg" *ngIf="form.numberTenants.hasError('min')">Number of tenants must be
+                        greater than zero
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="description">Additional description (optional):</label>
+                <textarea id="description" name="description" formControlName="description"
+                          class="form-control"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label>Please check if your apartment offers the following amenities:</label>
+                <div class="row">
+                  <div class="col-lg-7 col-xl-7 col-sm-12">
+                    <div class="custom-control custom-checkbox my-2">
+                      <input type="checkbox" class="custom-control-input" id="heating" formControlName="heating">
+                      <label class="custom-control-label" for="heating">
+                        <img src="../../assets/icons/heating-icon.png" class="img-fluid icons" alt="heating icon"/>
+                        Central Heating
+                      </label>
+                    </div>
+
+                    <div class="custom-control custom-checkbox my-2">
+                      <input type="checkbox" class="custom-control-input" id="balcony" formControlName="balcony">
+                      <label class="custom-control-label" for="balcony">
+                        <img src="../../assets/icons/balcony-icon.png" class="img-fluid icons" alt="balcony icon"/>
+                        Balcony
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-5 col-xl-5 col-sm-12">
+                    <div class="custom-control custom-checkbox my-lg-2">
+                      <input type="checkbox" class="custom-control-input" id="parking" formControlName="parking">
+                      <label class="custom-control-label" for="parking">
+                        <img src="../../assets/icons/parking-icon.png" class="img-fluid icons" alt="parking icon"/>
+                        Parking
+                      </label>
+                    </div>
+
+                    <div class="custom-control custom-checkbox my-2">
+                      <input type="checkbox" class="custom-control-input" id="elevator" formControlName="elevator">
+                      <label class="custom-control-label" for="elevator">
+                        <img src="../../assets/icons/elevator-icon.png" class="img-fluid icons" alt="elevator icon"/>
+                        Elevator
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="customFile">Primary picture:</label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="customFile" accept="image/*"
+                         (change)="onMainFileChanged($event)">
+                  <label class="custom-file-label" for="customFile" [innerText]="mainImageName"></label>
+                </div>
+                <small id="priceHelp" class="form-text text-muted">This picture will be used on the apartment
+                  card when users browse the listings.
+                </small>
+              </div>
+
+            </div>
+
+            <div class="col-lg-12 col-sm-12 px-4">
+              <div class="form-group" *ngIf="!editMode">
+                <label>Add pictures of the apartment: </label>
+                <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelectImages($event)">
+                  <ngx-dropzone-label>
+                    <div>
+                      <div><span class="fa fa-cloud-upload fa-3x"></span></div>
+                      Drag &amp; Drop here or click
+                    </div>
+                  </ngx-dropzone-label>
+                  <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"
+                                              *ngFor="let f of images"
+                                              [file]="f"
+                                              [removable]="true"
+                                              (removed)="onRemoveImage(f)">
+                  </ngx-dropzone-image-preview>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="!editMode" class="col-lg-12 mt-2">
+              <button type="submit" class="btn btn-blue btn-lg">
+                Create Listing
+                <span class="fa fa-check"></span>
+              </button>
+            </div>
+
+            <div *ngIf="editMode" class="col-lg-12 mt-3">
+              <div class="row">
+                <div class="col-lg-6 col-xl-6 col-sm-12 mb-2 mb-lg-0 mb-md-0">
+                  <a routerLink="/my-apartments" class="btn btn-danger btn-lg w-100">
+                    Cancel
+                    <span class="fa fa-times"></span>
+                  </a>
+                </div>
+                <div class="col-lg-6 col-xl-6 col-sm-12">
+                  <button type="submit" class="btn btn-blue btn-lg">
+                    Update Listing
+                    <span class="fa fa-check"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="editMode">
+            <input type="hidden" id="id" name="id" formControlName="id">
+            <input type="hidden" id="owner" name="owner" formControlName="owner">
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <ngx-spinner type="ball-spin" size="medium" [fullScreen]="true"
+               color="white" bdColor="rgba(0, 0, 0, 0.8)">
+    <h4 class="mt-5 text-white" *ngIf="!editMode">Adding new listing...</h4>
+    <h4 class="mt-5 text-white" *ngIf="editMode">Please wait...</h4>
+  </ngx-spinner>
+</div>
+
